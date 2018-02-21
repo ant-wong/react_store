@@ -115,8 +115,11 @@ class Shop extends Component {
     // })
 
     const styles = {
+      body: {
+        paddingBottom: '18%'
+      },
       bottomNav: {
-        backgroundColor: '#009688',
+        backgroundColor: '#C62828',
         height: '6em',
         position: 'fixed',
         left: 0,
@@ -135,25 +138,26 @@ class Shop extends Component {
     }
 
     return (
-      <div>
+      <div style={styles.body}>
         <h1>
           Issa shop
         </h1>
         <hr/>
         <div className="container">
-          <div className="row">
-            {/* {itemsJSX} */}
-          </div>
+          <h2>Something Something</h2>
         </div>
 
         <Switch>
           <Route path="/shop/shoes" render={() => {
-            return <Rice items={riceList}/>
+            return <Rice items={riceList}
+                         addItem={this.props.addItem}/>
           }} />
           <Route path="/shop/hats" render={() => {
-            return <Noodles items={noodleList}/>
+            return <Noodles items={noodleList}
+                            addItem={this.props.addItem}/>
           }} />
         </Switch>
+
         <Paper zDepth={3}>
           <BottomNavigation style={styles.bottomNav}>
             <Link to="/shop/shoes" style={styles.link}>

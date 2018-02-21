@@ -22,11 +22,11 @@ class Noodles extends Component {
     console.log(this.props.items)
     let noodleJSX = this.props.items.map((item,i) => {
       if(item.type === "noodle") {
-        return <div className="col-md-3" key={i}>
+        return <div className="col-md-3 col-sm-6" key={i}>
           <img src={item.img} alt="displayItem" style={styles.img} />
           <h3 style={styles.itemName}>{item.name}</h3>
           <span style={styles.price}>{item.price}</span>
-          <FloatingActionButton mini={true}>
+          <FloatingActionButton mini={true} onClick={this.props.addItem}>
             <ContentAdd />
           </FloatingActionButton>
         </div>

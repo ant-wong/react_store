@@ -10,7 +10,7 @@ class Nav extends Component {
 
     const styles = {
       navStyle: {
-        backgroundColor: '#009688',
+        backgroundColor: '#C62828',
         padding: '2% 1.5% 1% 1.5%',
         fontFamily: "'Dosis', sans-serif"
       },
@@ -55,7 +55,7 @@ class Nav extends Component {
         iconElementRight={
           <div>
             <Badge
-              badgeContent={4}
+              badgeContent={this.props.cartQty}
               primary={true}
               style={styles.badge}
             >
