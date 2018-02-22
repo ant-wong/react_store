@@ -102,17 +102,9 @@ class Shop extends Component {
   }
   
   render() {
-    
+
     const riceList = this.state.items.filter(item => item.type === "rice")
     const noodleList = this.state.items.filter(item => item.type === "noodle")
-
-    // let itemsJSX = this.state.items.map((item,i) => {
-    //   return <div className="col-md-4">
-    //     <img src={item.img} alt="displayItem" height="100" />
-    //     <h3>{item.name}</h3>
-    //     <p>{item.price}</p>
-    //   </div>
-    // })
 
     const styles = {
       body: {
@@ -124,6 +116,13 @@ class Shop extends Component {
         position: 'fixed',
         left: 0,
         bottom: 0
+      },
+      title: {
+        fontSize: '3em',
+        padding: '1.3% 0%'
+      },
+      welcome: {
+        margin: '1.6em 0'
       },
       link: {
         textAlign: 'center'
@@ -139,35 +138,35 @@ class Shop extends Component {
 
     return (
       <div style={styles.body}>
-        <h1>
+        <h1 style={styles.title}>
           Issa shop
         </h1>
         <hr/>
         <div className="container">
-          <h2>Something Something</h2>
+          <h2 style={styles.welcome}>Welcome {this.props.username}! Come eat my food, sweet cheeks</h2>
         </div>
 
         <Switch>
-          <Route path="/shop/shoes" render={() => {
+          <Route path="/shop/rice" render={() => {
             return <Rice items={riceList}
-                         addItem={this.props.addItem}/>
+                         plusItem={this.props.plusItem}/>
           }} />
-          <Route path="/shop/hats" render={() => {
+          <Route path="/shop/noodles" render={() => {
             return <Noodles items={noodleList}
-                            addItem={this.props.addItem}/>
+                            plusItem={this.props.plusItem}/>
           }} />
         </Switch>
 
         <Paper zDepth={3}>
           <BottomNavigation style={styles.bottomNav}>
-            <Link to="/shop/shoes" style={styles.link}>
+            <Link to="/shop/rice" style={styles.link}>
               <BottomNavigationItem
                 label="Rice, yo"
                 icon={<i className="material-icons" style={styles.text}>child_care</i>}
                 style={styles.icon}
               />
             </Link>
-            <Link to="/shop/hats" style={styles.link}>
+            <Link to="/shop/noodles" style={styles.link}>
               <BottomNavigationItem
                 label="Send noods"
                 icon={<i className="material-icons" style={styles.text}>beach_access</i>}

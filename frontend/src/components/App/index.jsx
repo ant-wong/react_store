@@ -12,13 +12,36 @@ class App extends Component {
     super() 
       this.state = {
         username: "",
-        cartQty: 0
+        cart: [],
+        cartQty: 0,
+        fireRedirect: false
     }
   }
 
-
-  addItem = () => {
+  // FORM HANDLE
+  textHandler = (ev) => {
+    ev.preventDefault()
+    this.state.username = ev.target.value
     this.setState({
+      username: this.state.username
+    })
+    // console.log(this.state.username)
+  }
+
+  // ADD USER
+  submitName = () => {
+    localStorage.setItem('user', JSON.stringify(this.state.username))
+    let user = JSON.parse(localStorage.getItem('user'))
+    this.setState({
+      username: user,
+      fireRedirect: true
+    })
+  }
+
+  // INCREMENT CART
+  plusItem = (item) => {
+    this.setState({
+      cart: this.state.cart.concat(item),
       cartQty: this.state.cartQty + 1
     })
   }
@@ -35,18 +58,22 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div className="App" style={styles.body}>
-        <Nav cartQty={this.state.cartQty}/>
+        <Nav cartQty={this.state.cartQty} totalPrice={this.state.totalPrice}/>
           <Switch>
             <Route exact path="/" render={() => {
-              return <Home username={this.state.username}/>
+              return <Home username={this.state.username}
+                           textHandler={this.textHandler}
+                           submitName={this.submitName}
+                           fireRedirect={this.state.fireRedirect}/>
             }} />
             <Route path="/shop" render={() => {
               return <Shop username={this.state.username}
-                           addItem={this.addItem}/>
+                           plusItem={this.plusItem}/>
             }} />
             <Route path="/checkout" render={() => {
               return <Cart username={this.state.username}
-                           cartQty={this.state.cartQty}/>
+                           cartQty={this.state.cartQty}
+                           cart={this.state.cart}/>
             }} />
           </Switch>
         </div>

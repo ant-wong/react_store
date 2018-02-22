@@ -35,7 +35,7 @@ class Nav extends Component {
       },
       badge: {
         position: 'relative',
-        right: '30%'
+        right: '30%',
       }
     };
 
@@ -57,8 +57,7 @@ class Nav extends Component {
             <Badge
               badgeContent={this.props.cartQty}
               primary={true}
-              style={styles.badge}
-            >
+              style={styles.badge}>
             <Link to="/checkout">
               <img src={cart} alt="cart" style={styles.cartButton}/>
             </Link>
